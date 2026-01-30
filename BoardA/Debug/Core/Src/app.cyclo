@@ -1,0 +1,5 @@
+../Core/Src/app.c:27:6:motor_commThreadFunc	1
+../Core/Src/app.c:37:6:motor_applyControlFunc	1
+../Core/Src/app.c:44:6:TimerCallback	1
+../Core/Src/app.c:49:6:app_init	1
+../Core/Src/app.c:74:6:app_loop	1
