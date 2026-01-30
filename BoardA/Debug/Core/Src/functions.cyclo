@@ -1,0 +1,6 @@
+../Core/Src/functions.c:11:6:motor_turnOff	1
+../Core/Src/functions.c:18:6:motor_turnOn	1
+../Core/Src/functions.c:25:6:motor_applyControl	2
+../Core/Src/functions.c:37:10:motor_readSpeed	1
+../Core/Src/functions.c:42:6:motor_sendSpeed	1
+../Core/Src/functions.c:47:10:motor_getControl	1
