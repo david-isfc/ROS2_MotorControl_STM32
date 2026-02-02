@@ -11,6 +11,10 @@
 #include <stdint.h>
 #include "functions.h"
 
+#define PERIOD_CTRL_MS 10
+#define PERIOD_COMM_MS 15 // this is the sample rate of speed as well
+#define FLAG_PERIODIC 0x01
+
 // Initializes the RTOS threads, sets the priorities and configures peripherals
 void app_init(void);
 

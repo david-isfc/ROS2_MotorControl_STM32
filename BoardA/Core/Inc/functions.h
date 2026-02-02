@@ -10,6 +10,7 @@
 
 #include <stdint.h>
 #include "stm32l4xx_hal.h"
+#include "app.h"
 
 // Turns off the motor
 void motor_turnOff(void);
@@ -18,17 +19,17 @@ void motor_turnOff(void);
 void motor_turnOn(void);
 
 // Applies specific duty cycle to the motor
-void motor_applyControl(uint32_t control);
+void motor_applyControl(int8_t cmd);
 
 // Reads the speed of the motor via the encoder
 // ms is the time
-uint32_t motor_readSpeed(uint32_t ms);
+int32_t motor_readSpeed();
 
 // Sends the speed to BoardB via Ethernet Cable
-void motor_sendSpeed(uint32_t speed);
+void motor_sendSpeed(int32_t speed);
 
 // Get Control from BoardB
-uint32_t motor_getControl(void);
+int8_t motor_getControl(void);
 
 
 #endif /* INC_FUNCTIONS_H_ */

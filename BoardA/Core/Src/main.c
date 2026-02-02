@@ -64,12 +64,25 @@ static void MX_TIM3_Init(void);
 void StartDefaultTask(void *argument);
 
 /* USER CODE BEGIN PFP */
-
+uint32_t Main_GetTickMillisec(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+inline uint32_t Main_GetTickMillisec(void)
+{
+#ifdef __RTX
+  #if defined (osCMSIS) && (osCMSIS < 0x20000U)
+    extern uint32_t os_time;
+    return os_time;
+  #else
+    extern uint32_t osKernelGetTickCount();
+    return osKernelGetTickCount();
+  #endif
+#else
+  return HAL_GetTick();
+#endif
+}
 /* USER CODE END 0 */
 
 /**
