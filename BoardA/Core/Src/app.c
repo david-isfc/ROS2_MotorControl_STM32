@@ -9,11 +9,8 @@
 #include "app.h"
 #include "cmsis_os.h"
 
-#define PERIOD_CTRL 10
-#define PERIOD_COMM 15
-#define FLAG_PERIODIC 0x01
-
 extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim1;
 
 osThreadId_t motor_applyControlHandle; // Thread that controls the motor based on the received control
 osThreadId_t motor_commHandle; // Thread that reads the speed, sends it over to board B to calculate the needed control
@@ -28,7 +25,8 @@ void motor_commThreadFunc(void *argument){
 	for(;;){
 		osThreadFlagsWait(FLAG_PERIODIC, osFlagsWaitAll, osWaitForever);
 		// communication
-		uint32_t speed = motor_readSpeed(ms);
+//		ms = Main_GetTickMillisec();
+		int32_t speed = motor_readSpeed();
 		motor_sendSpeed(speed);
 		control = motor_getControl();
 	}
@@ -62,11 +60,12 @@ void app_init(){
 
 	// Initialize OsTimers
 	timer_comm = osTimerNew(TimerCallback, osTimerPeriodic, (void*)motor_commHandle, NULL);
-	osTimerStart(timer_comm, PERIOD_COMM);
+	osTimerStart(timer_comm, PERIOD_COMM_MS);
 
 	timer_ctrl = osTimerNew(TimerCallback, osTimerPeriodic, (void*)motor_applyControlHandle, NULL);
-	osTimerStart(timer_ctrl, PERIOD_CTRL);
+	osTimerStart(timer_ctrl, PERIOD_CTRL_MS);
 
+	HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL);
 	motor_turnOn();
 
 }
