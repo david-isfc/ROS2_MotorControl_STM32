@@ -74,4 +74,4 @@ This architecture provides:
 * **Board B:** Micro-ROS bridge for ROS 2 integration  
 * **PC:** Python ROS 2 node for computing motor commands, logging, and visualization  
 
-✅ Perfect for learning and prototyping distributed embedded control systems with ROS 2.
+Perfect for learning and prototyping distributed embedded control systems with ROS 2.
